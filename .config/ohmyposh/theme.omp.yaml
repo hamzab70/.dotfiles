@@ -1,0 +1,155 @@
+---
+"$schema": https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+blocks:
+  - alignment: left
+    newline: true
+    segments:
+      - type: shell
+        foreground: "#E06C75"
+        properties:
+          mapped_shell_names:
+            pwsh: Shell
+            powershell: Shell
+            cmd: Cmd
+            bash: Bash
+        style: plain
+        template: "  {{ .Name }}"
+      # - type: ipify
+      #   foreground: "#E06C75"
+      #   properties:
+      #     cache_timeout: 60
+      #     http_timeout: 1000
+      #   style: plain
+      #   template: " @ {{ .IP }} "
+      - type: kubectl
+        foreground: "#4E63E7"
+        # properties:
+        #   parse_kubeconfig: true
+        style: plain
+        template: " ﴱ  {{.Context}}{{if .Namespace}} :: {{.Namespace}}/{{.Cluster}}{{end}} "
+    type: prompt
+  - alignment: right
+    segments:
+      - type: git
+        foreground: "#F3C267"
+        foreground_templates:
+        - "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}"
+        - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}"
+        - "{{ if gt .Ahead 0 }}#B388FF{{ end }}"
+        - "{{ if gt .Behind 0 }}#B388FF{{ end }}"
+        properties:
+          branch_max_length: 25
+          branch_icon: ""
+          fetch_stash_count: true
+          fetch_status: true
+          fetch_upstream_icon: true
+        style: plain
+        template: " {{ .UpstreamIcon }} {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus
+          }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and
+          (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}
+           {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{
+          end }} "
+      - type: status
+        foreground: "#B8FF75"
+        foreground_templates:
+        - "{{ if gt .Code 0 }}#E06C75{{ end }}"
+        style: plain
+        template: " x{{ reason .Code }}"
+      - type: executiontime
+        foreground: "#B8FF75"
+        foreground_templates:
+        - "{{ if gt .Code 0 }}#E06C75{{ end }}"
+        properties:
+          style: roundrock
+          treshold: 1000
+          always_enabled: false
+        style: diamond
+        template: " {{ .FormattedMs }} "
+    type: prompt
+
+  - alignment: left
+    newline: true
+    segments:
+      - type: path
+        foreground: "#61AFEF"
+        properties:
+          style: full
+        style: plain
+        template: " {{ .Path }}"
+    type: prompt
+  - alignment: right
+    segments:
+      - type: go
+        foreground: "#61AFEF"
+        style: plain
+        template: " {{ if .Error }}{{ .Error }}{{ else }} {{ .Full }}{{ end }} "
+      - type: bun
+        foreground: "#EB71B8"
+        style: plain
+        template: " bun {{ .Full }} "
+      - type: node
+        foreground: "#47B75E"
+        style: plain
+        template: " {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }} {{ .Full }} "
+      - type: python
+        foreground: "#F6F23C"
+        style: plain
+        template: " {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }} {{ .Major }}.{{ .Minor }}{{ end }} "
+    type: prompt
+
+  - alignment: left
+    newline: true
+    segments:
+      - type: root
+        foreground: "#7743B3"
+        style: plain
+        template: "!"
+      - type: text
+        foreground_templates:
+          - "{{if gt .Code 0}}red{{end}}"
+          - "{{if eq .Code 0}}#7743B3{{end}}"
+        style: plain
+        template: "❯"
+    type: prompt
+
+tooltips:
+  - type: terraform
+    tips:
+      - terraform
+    foreground: "#513CB6"
+    style: plain
+    template: "󱁢 {{ .WorkspaceName }}{{ if .Version }} {{ .Version }}{{ end }}"
+  - type: aws
+    foreground: "#E0AF68"
+    tips:
+      - aws
+      - terraform
+    template: "󰸏 {{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
+    style: plain
+  - type: az
+    foreground: "#B4F9F8"
+    tips:
+      - az
+      - terraform
+    style: plain
+    template: " {{ .Name }}"
+  # - type: docker
+  #   tips:
+  #       - docker
+  #       - podman
+  #   foreground: "#448DE8"
+  #   style: plain
+  #   template: "  {{ .Context }}"
+
+transient_prompt:
+  foreground_templates:
+      - "{{if gt .Code 0}}red{{end}}"
+      - "{{if eq .Code 0}}#7743B3{{end}}"
+  template: "❯"
+
+secondary_prompt:
+  foreground: "#7743B3"
+  template: "❯❯ "
+
+final_space: true
+version: 2
