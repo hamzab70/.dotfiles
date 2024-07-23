@@ -13,7 +13,7 @@ blocks:
             cmd: Cmd
             bash: Bash
         style: plain
-        template: "  {{ .Name }}"
+        template: "  {{ .Name }} "
       # - type: ipify
       #   foreground: "#E06C75"
       #   properties:
@@ -26,7 +26,7 @@ blocks:
         # properties:
         #   parse_kubeconfig: true
         style: plain
-        template: " ﴱ  {{.Context}}{{if .Namespace}} :: {{.Namespace}}/{{.Cluster}}{{end}} "
+        template: " ﴱ  {{.Context}} "
     type: prompt
   - alignment: right
     segments:

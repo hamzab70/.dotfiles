@@ -6,6 +6,7 @@ A backup of all my dotfiles, shell configurations and themes based on ZSH and ot
 * git
 * zsh
 * stow
+* [fzf](https://github.com/junegunn/fzf?tab=readme-ov-file#installation)
 * [oh-my-posh](https://ohmyposh.dev/docs)
 * [Hack Nerd Font Regular](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip)
 
