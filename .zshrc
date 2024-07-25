@@ -60,6 +60,9 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
+# Add fzf auto-completion
+source <(fzf --zsh)
+
 # Aliases
 alias la='ls -la'
 alias c='clear'
