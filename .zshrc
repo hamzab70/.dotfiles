@@ -6,6 +6,11 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+# Only for WSL2 setup
+if [[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]] then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
@@ -42,6 +47,7 @@ zinit snippet OMZP::web-search
 # Load completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
+source <(fzf --zsh)
 
 # Add in oh-my-posh (if is only for MacOS work laptop)
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
@@ -71,9 +77,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
-# Add fzf auto-completion
-source <(fzf --zsh)
-
 # Aliases
 alias la='ls -la'
 alias c='clear'
@@ -91,5 +94,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
 [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
