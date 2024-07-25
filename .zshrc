@@ -78,6 +78,9 @@ alias c='clear'
 # Export DISPLAY in WSL2 setup
 export DISPLAY=:0
 
+# python local binaries
+export PATH=$PATH:~/.local/bin
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -85,3 +88,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
 [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
