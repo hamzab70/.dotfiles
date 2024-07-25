@@ -14,19 +14,13 @@ blocks:
             bash: Bash
         style: plain
         template: "  {{ .Name }} "
-      # - type: ipify
-      #   foreground: "#E06C75"
-      #   properties:
-      #     cache_timeout: 60
-      #     http_timeout: 1000
-      #   style: plain
-      #   template: " @ {{ .IP }} "
-      - type: kubectl
-        foreground: "#4E63E7"
-        # properties:
-        #   parse_kubeconfig: true
+      - type: ipify
+        foreground: "#E06C75"
+        properties:
+          cache_timeout: 60
+          http_timeout: 1000
         style: plain
-        template: " ﴱ  {{.Context}} "
+        template: "@ {{ .IP }} "
     type: prompt
   - alignment: right
     segments:
@@ -113,19 +107,6 @@ blocks:
     type: prompt
 
 tooltips:
-  - type: terraform
-    tips:
-      - terraform
-    foreground: "#513CB6"
-    style: plain
-    template: "󱁢 {{ .WorkspaceName }}{{ if .Version }} {{ .Version }}{{ end }}"
-  - type: aws
-    foreground: "#E0AF68"
-    tips:
-      - aws
-      - terraform
-    template: "󰸏 {{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
-    style: plain
   - type: az
     foreground: "#B4F9F8"
     tips:
@@ -133,13 +114,13 @@ tooltips:
       - terraform
     style: plain
     template: " {{ .Name }}"
-  # - type: docker
-  #   tips:
-  #       - docker
-  #       - podman
-  #   foreground: "#448DE8"
-  #   style: plain
-  #   template: "  {{ .Context }}"
+  - type: docker
+    tips:
+        - docker
+        - podman
+    foreground: "#448DE8"
+    style: plain
+    template: "  {{ .Context }}"
 
 transient_prompt:
   foreground_templates:
