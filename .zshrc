@@ -68,5 +68,3 @@ export PATH=$PATH:~/.local/bin
 source <(fzf --zsh)
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.omp.yaml)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-exec zsh
