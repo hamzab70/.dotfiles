@@ -1,6 +1,5 @@
-[credential "https://github.com"]
-        helper = 
-        helper = !/usr/bin/gh auth git-credential
 [user]
         name = hamzab70
         email = hboulaich23@gmail.com
+[core]
+        sshCommand = ssh -i ~/.ssh/git-hamzab70
