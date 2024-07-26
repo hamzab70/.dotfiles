@@ -23,23 +23,20 @@ zinit snippet OMZP::command-not-found
 zinit snippet OMZP::copyfile
 zinit snippet OMZP::dircycle
 zinit snippet OMZP::docker
+zinit snippet OMZP::docker-compose
 zinit snippet OMZP::extract
 zinit snippet OMZP::git
 zinit snippet OMZP::pip
 zinit snippet OMZP::sudo
-zinit snippet OMZP::vscode
 zinit snippet OMZP::web-search
 
 # Load completions
 autoload -Uz compinit && compinit
 zinit cdreplay -q
 
-# Add in oh-my-posh
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.omp.yaml)"
-
 # Keybindings
-bindkey "${key[Up]}" history-search-backward
-bindkey "${key[Down]}" history-search-forward
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
 
 # History
 HISTFILE=$HOME/.zsh_history
@@ -60,16 +57,16 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
-# Add fzf auto-completion
-source <(fzf --zsh)
-
 # Aliases
 alias la='ls -la'
 alias c='clear'
-alias docker='podman'
 
 # Python3 local binaries
 export PATH=$PATH:~/.local/bin
 
-# Add brew to path
+# Shell integrations
+source <(fzf --zsh)
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.omp.yaml)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+exec zsh
