@@ -1,6 +1,9 @@
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
+# Set brew path
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
@@ -14,6 +17,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-history-substring-search
 zinit light Aloxaf/fzf-tab
 
 # Add in oh-my-zsh plugins
@@ -35,8 +39,8 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 # Keybindings
-bindkey "^[[A" history-search-backward
-bindkey "^[[B" history-search-forward
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # History
 HISTFILE=$HOME/.zsh_history
@@ -67,4 +71,3 @@ export PATH=$PATH:~/.local/bin
 # Shell integrations
 source <(fzf --zsh)
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.omp.yaml)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
