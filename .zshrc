@@ -24,6 +24,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-history-substring-search
 zinit light Aloxaf/fzf-tab
 
 # Add in oh-my-zsh plugins
@@ -55,8 +56,8 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
 fi
 
 # Keybindings
-bindkey "${key[Up]}" history-search-backward
-bindkey "${key[Down]}" history-search-forward
+bindkey "${key[Up]}" history-substring-search-up
+bindkey "${key[Down]}" history-substring-search-down
 
 # History
 HISTFILE=$HOME/.zsh_history
